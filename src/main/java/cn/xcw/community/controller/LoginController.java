@@ -103,7 +103,7 @@ public class LoginController implements CommunityConstant{
 
     //用户登陆
     //code是验证码
-//    @CookieValue：用来获取Cookie中的值
+//    @CookieValue：根据cookie的name获取Cookie中的value
     @PostMapping("/login")
     public String login(String username, String password, String code, boolean rememberme,
                         Model model, HttpSession session, HttpServletResponse response,

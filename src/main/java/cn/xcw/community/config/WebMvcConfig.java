@@ -34,7 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //不拦截静态资源
-        registry.addInterceptor(loginTicketInterceptor)
+        registry.addInterceptor(loginTicketInterceptor)//默认拦截所有
                 .excludePathPatterns("/**/*.css","/**/*.js","/**/*.png","/**/*.jpg","/**/*.jpeg");
 
         registry.addInterceptor(loginRequiredInterceptor)

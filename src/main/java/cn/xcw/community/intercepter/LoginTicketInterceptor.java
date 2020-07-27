@@ -5,7 +5,6 @@ import cn.xcw.community.entity.User;
 import cn.xcw.community.service.UserService;
 import cn.xcw.community.util.CookieUtil;
 import cn.xcw.community.util.HostHolder;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -45,6 +44,7 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
         if (ticket != null) {
             //查询redis中的凭证，返回LoginTicket
             LoginTicket loginTicket = userService.findLoginTicket(ticket);
+            //如果凭证有效，则添加用户
             if (loginTicket != null && loginTicket.getStatus() == 0 && loginTicket.getExpired().after(new Date())) {
                 //根据凭证查询用户
                 User user = userService.findUserById(loginTicket.getUserId());
@@ -64,7 +64,7 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
     }
 
     /**
-     * posthandle在prehandle方法返回true，controller方法处理完，视图渲染之前执行
+     * posthandle在prehandle方法返回true，controller方法处理完，模板引擎渲染之前执行
      * 可以对modelandview操作
      * @param request
      * @param response

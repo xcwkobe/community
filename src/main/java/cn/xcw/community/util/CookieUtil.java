@@ -5,7 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CookieUtil {
 
-
+    /**
+     * 根据cookie的name拿到cookie的value
+     * @param request
+     * @param name
+     * @return
+     */
     public static String getValue(HttpServletRequest request,String name){
         if(request==null||name==null){
             throw new IllegalArgumentException("参数为空");
