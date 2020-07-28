@@ -37,6 +37,7 @@ public class CommentController implements CommunityConstant {
 
     @Autowired
     private DiscussPostService discussPostService;
+
     @Autowired
     private RedisTemplate redisTemplate;
 

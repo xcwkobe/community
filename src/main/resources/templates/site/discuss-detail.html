@@ -172,6 +172,7 @@
 											<li class="d-inline ml-2">|</li>
 											<li class="d-inline ml-2"><a th:href="|#huifu-${rvoStat.count}|" data-toggle="collapse" class="text-primary">回复</a></li>
 										</ul>
+										<!--回复固定的某个人-->
 										<div th:id="|huifu-${rvoStat.count}|" class="mt-4 collapse">
 											<form method="post" th:action="@{|/comment/add/${post.id}|}">
 												<div>
@@ -188,7 +189,7 @@
 									</div>								
 								</li>
 
-								<!-- 回复输入框 -->
+								<!-- 回复某条评论 -->
 								<li class="pb-3 pt-3">
 									<form method="post" th:action="@{|/comment/add/${post.id}|}">
 										<div>

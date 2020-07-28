@@ -1,9 +1,5 @@
 package cn.xcw.community.service;
 
-import cn.xcw.community.entity.DiscussPost;
-import cn.xcw.community.mapper.DiscussPostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,27 +10,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class ElasticsearchService {
 
-    @Autowired
-    private DiscussPostRepository discussRepository;
-
-    @Autowired
-    private ElasticsearchTemplate elasticTemplate;
-
-    /**
-     * 往es保存帖子
-     * @param post
-     */
-    public void saveDiscussPost(DiscussPost post) {
-        discussRepository.save(post);
-    }
-
-    /**
-     * es删除帖子
-     * @param id
-     */
-    public void deleteDiscussPost(int id) {
-        discussRepository.deleteById(id);
-    }
+//    @Autowired
+//    private DiscussPostRepository discussRepository;
+//
+//    @Autowired
+//    private ElasticsearchTemplate elasticTemplate;
+//
+//    /**
+//     * 往es保存帖子
+//     * @param post
+//     */
+//    public void saveDiscussPost(DiscussPost post) {
+//        discussRepository.save(post);
+//    }
+//
+//    /**
+//     * es删除帖子
+//     * @param id
+//     */
+//    public void deleteDiscussPost(int id) {
+//        discussRepository.deleteById(id);
+//    }
 
 //    public Page<DiscussPost> searchDiscussPost(String keyword, int current, int limit) {
 //        SearchQuery searchQuery = new NativeSearchQueryBuilder()

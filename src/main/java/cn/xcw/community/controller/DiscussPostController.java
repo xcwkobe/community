@@ -65,10 +65,10 @@ public class DiscussPostController implements CommunityConstant{
         discussPostService.addDiscussPost(post);
 
         //触发发帖事件，新建发帖事件实体
-        Event event=new Event().setTopic(TOPIC_PUBLISH).setUserId(user.getId())
-                .setEntityType(ENTITY_TYPE_POST).setEntityId(post.getId());
-        //kafka发布消息
-        eventProducer.fireEvent(event);
+//        Event event=new Event().setTopic(TOPIC_PUBLISH).setUserId(user.getId())
+//                .setEntityType(ENTITY_TYPE_POST).setEntityId(post.getId());
+//        //kafka发布消息
+//        eventProducer.fireEvent(event);
         //计算帖子的分数
         String redisKey= RedisKeyUtil.getPostScoreKey();
         //add可以设置一个key，多个value，存在key的时候，就继续添加value

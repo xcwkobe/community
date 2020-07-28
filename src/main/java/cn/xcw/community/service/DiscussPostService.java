@@ -2,6 +2,7 @@ package cn.xcw.community.service;
 
 import cn.xcw.community.entity.DiscussPost;
 import cn.xcw.community.mapper.DiscussPostMapper;
+import cn.xcw.community.util.SensitiveFilter;
 import com.github.benmanes.caffeine.cache.CacheLoader;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
@@ -43,6 +44,9 @@ public class DiscussPostService {
 
     @Value("${caffeine.posts.expire-seconds}")
     private int expireSeconds;
+
+    @Autowired
+    private SensitiveFilter sensitiveFilter;
 
     /**
      * 被@PostConstruct修饰的方法会在服务器加载Servlet的时候运行，
@@ -130,8 +134,8 @@ public class DiscussPostService {
         post.setContent(HtmlUtils.htmlEscape(post.getContent()));
 
         //过滤敏感词
-//        post.setTitle(sensitiveFilter.filter(post.getTitle()));
-//        post.setContent(sensitiveFilter.filter(post.getContent()));
+        post.setTitle(sensitiveFilter.filter(post.getTitle()));
+        post.setContent(sensitiveFilter.filter(post.getContent()));
         return discussPostMapper.insertDiscussPost(post);
     }
 

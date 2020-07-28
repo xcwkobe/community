@@ -3,6 +3,7 @@ package cn.xcw.community.service;
 import cn.xcw.community.entity.Comment;
 import cn.xcw.community.mapper.CommentMapper;
 import cn.xcw.community.util.CommunityConstant;
+import cn.xcw.community.util.SensitiveFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -22,14 +23,23 @@ public class CommentService implements CommunityConstant{
 
     @Autowired
     private CommentMapper commentMapper;
-//    @Autowired
-//    private SensitiveFilter sensitiveFilter;
+
+    @Autowired
+    private SensitiveFilter sensitiveFilter;
+
     @Autowired
     private DiscussPostService discussPostService;
 
-
-    public List<Comment> findCommentsByEntity(int entityTypePost, int id, int offset, int limit) {
-        return null;
+    /**
+     * 查询某个实体的所有评论
+     * @param entityType
+     * @param entityId
+     * @param offset
+     * @param limit
+     * @return
+     */
+    public List<Comment> findCommentsByEntity(int entityType, int entityId, int offset, int limit) {
+        return commentMapper.selectCommentsByEntity(entityType,entityId,offset,limit);
     }
 
     /**
@@ -53,7 +63,7 @@ public class CommentService implements CommunityConstant{
         }
         //添加评论
         comment.setContent(HtmlUtils.htmlEscape(comment.getContent()));
-//        comment.setContent(sensitiveFilter.filter(comment.getContent()));
+        comment.setContent(sensitiveFilter.filter(comment.getContent()));
         int rows=commentMapper.insertComment(comment);
 
         //如果添加的是帖子下的评论，就得更新帖子评论数量

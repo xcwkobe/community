@@ -2,6 +2,7 @@ package cn.xcw.community.service;
 
 import cn.xcw.community.entity.Message;
 import cn.xcw.community.mapper.MessageMapper;
+import cn.xcw.community.util.SensitiveFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
@@ -20,8 +21,8 @@ public class MessageService {
     @Autowired
     private MessageMapper messageMapper;
 
-//    @Autowired
-//    private SensitiveFilter sensitiveFilter;
+    @Autowired
+    private SensitiveFilter sensitiveFilter;
 
     /**
      * 查询用户的会话数量
@@ -94,7 +95,7 @@ public class MessageService {
 
     public int addMessage(Message message){
         message.setContent(HtmlUtils.htmlEscape(message.getContent()));
-//        message.setContent(sensitiveFilter.filter(message.getContent()));
+        message.setContent(sensitiveFilter.filter(message.getContent()));
         return messageMapper.insertMessage(message);
     }
 

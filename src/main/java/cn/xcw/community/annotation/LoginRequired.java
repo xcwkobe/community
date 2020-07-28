@@ -1,11 +1,5 @@
 package cn.xcw.community.annotation;
 
-/**
- * @class: LoginRequired
- * @author: 邢成伟
- * @description: TODO
- **/
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

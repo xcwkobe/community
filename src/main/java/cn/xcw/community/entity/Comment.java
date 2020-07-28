@@ -13,7 +13,7 @@ import java.util.Date;
 public class Comment {
 
 //    entity_type 评论的目标的类别 1：帖子 2: 评论 支持回复评论
-//    entity_id 评论具体的目标
+//    entity_id 评论具体的目标的id
 //    target_id 记录回复指向的人 (只会发生在回复中 判断target_id==0)
 //    user_id 评论的作者
 

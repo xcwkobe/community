@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface CommentMapper {
 
+    //根据目标类型和目标id查询所有的评论
     List<Comment> selectCommentsByEntity(@Param("entityType") int entityType,@Param("entityId") int entityId,
                                          @Param("offset") int offset,@Param("limit") int limit);
 

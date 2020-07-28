@@ -30,10 +30,11 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
 
     /**
      * prehandle在controller方法处理前被调用
+     * 如果有登录的凭证，则保存user信息到threadLocal当前线程
      * @param request
      * @param response
      * @param handler
-     * @return
+     * @return 总是返回true，因为
      * @throws Exception
      */
     @Override
